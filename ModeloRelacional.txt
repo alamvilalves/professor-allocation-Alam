@@ -1,0 +1,15 @@
+Departamento(id, nome)
+	id chave primaria
+Professor (id, nome, cpf, departamento_id)
+	id chave primaria
+	departamento_id referencia Departamento (id) 
+Curso (id, nome)
+	id chave primaria
+Alocacao (id,professor_id,curso_id,dia,inicio,fim)
+	id chave primaria
+	professor_id referencia Professor (id)
+	curso_id referencia Curso (id)
+	professor_id,curso_id indice único
+
+	
+	
