@@ -1,6 +1,11 @@
 package com.project.professor.allocation.alam.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Professor {
+	@Id
 	private Long id;
 	private String nome;
 	private String cpf;
