@@ -1,5 +1,6 @@
 package com.project.professor.allocation.alam.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +11,14 @@ public class Professor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(name = "name", nullable = false)
 	private String nome;
+	
+	@Column(name = "cpf", nullable = false, unique = true, length = 14)
 	private String cpf;
+	
+	@Column(name = "department_id", nullable = false )
 	private Long departmentId;
 	
 	public Long getId() {
