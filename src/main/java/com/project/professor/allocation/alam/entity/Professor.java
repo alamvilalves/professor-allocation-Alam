@@ -1,5 +1,8 @@
 package com.project.professor.allocation.alam.entity;
 
+import java.util.List;
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Professor {
@@ -27,7 +31,10 @@ public class Professor {
 	@JoinColumn(name = "department_id",nullable = false, insertable = false, updatable = false)
 	private Department department;
 	
-	public Long getId() {
+	@OneToMany(mappedBy = "professor")
+	private List<Allocation> allocations;
+		
+		public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
@@ -57,5 +64,10 @@ public class Professor {
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
-	
+	public List<Allocation> getAllocations() {
+		return allocations;
+	}
+	public void setAllocations(List<Allocation> allocations) {
+		this.allocations = allocations;
+	}	
 }

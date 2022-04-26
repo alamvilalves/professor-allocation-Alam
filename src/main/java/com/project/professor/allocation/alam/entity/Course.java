@@ -1,10 +1,13 @@
 package com.project.professor.allocation.alam.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Course {
@@ -14,6 +17,9 @@ public class Course {
 	
 	@Column(name = "name", nullable = false, unique = true)
 	private String name;
+	
+	@OneToMany(mappedBy = "course")
+	private List<Allocation> allocations;
 	
 	public Long getId() {
 		return id;
@@ -26,5 +32,11 @@ public class Course {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public List<Allocation> getAllocations() {
+		return allocations;
+	}
+	public void setAllocations(List<Allocation> allocations) {
+		this.allocations = allocations;
 	}
 }
