@@ -39,4 +39,9 @@ public class Course {
 	public void setAllocations(List<Allocation> allocations) {
 		this.allocations = allocations;
 	}
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", name=" + name + "]";
+	}
+	
 }

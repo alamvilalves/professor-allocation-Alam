@@ -39,5 +39,10 @@ public class Department {
 	public void setProfessors(List<Professor> professors) {
 		this.professors = professors;
 	}
+	@Override
+	public String toString() {
+		return "Department [id=" + id + ", name=" + name + "]";
+	}
+	
 
 }
