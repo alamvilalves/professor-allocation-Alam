@@ -9,7 +9,7 @@ import com.project.professor.allocation.alam.entity.Professor;
 
 @Repository
 public interface ProfessorRepository extends JpaRepository<Professor, Long>{
-	List<Professor> findByNameContainingIgnoreCase(String name);
+	List<Professor> findByNomeContainingIgnoreCase(String nome);
 	List<Professor> findByDepartmentId(Long departmentId);
 } 
 
