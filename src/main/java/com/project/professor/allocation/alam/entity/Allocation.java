@@ -1,52 +1,65 @@
 package com.project.professor.allocation.alam.entity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 @Entity
 public class Allocation {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "day", nullable = false)
-	private DayOfWeek day;
-	
-	@Temporal(TemporalType.TIME)
-	@Column(name = "start", nullable = false)
-	private Date start;
-	
-	@Temporal(TemporalType.TIME)
-	@Column(name = "end", nullable = false)
-	private Date end;
-	
-	@Column(name = "course_id",nullable = false)
-	private Long courseId;
-	
-	@Column(name = "professor_id", nullable = false)
-	private Long professorId;
-	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "professor_id", nullable = false, insertable = false, updatable = false)
-	private Professor professor;
-	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "course_id", nullable = false, insertable = false, updatable = false)
-	private Course course;
-	
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private DayOfWeek day;
+
+    @ApiModelProperty(example = "10:00-0300")
+    @JsonFormat(pattern = "HH:mmZ")
+    @JsonSerialize(using = DateSerializer.class)
+    @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
+    @Temporal(TemporalType.TIME)
+    @Column(name="startHour",nullable = false)
+    private Date start;
+
+    @ApiModelProperty(example = "13:00-0300")
+    @JsonFormat(pattern = "HH:mmZ")
+    @JsonSerialize(using = DateSerializer.class)
+    @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
+    @Temporal(TemporalType.TIME)
+    @Column(name="endHour", nullable = false)
+    private Date end;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(name = "course_id", nullable = false)
+    private Long courseId;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(name = "professor_id", nullable = false)
+    private Long professorId;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonIgnoreProperties({ "allocations" })
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "course_id", nullable = false, insertable = false, updatable = false)
+    private Course course;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonIgnoreProperties({ "allocations" })
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "professor_id", nullable = false, insertable = false, updatable = false)
+    private Professor professor;
+
+    
 	public Long getId() {
 		return id;
 	}
