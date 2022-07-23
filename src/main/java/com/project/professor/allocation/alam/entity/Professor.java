@@ -28,8 +28,8 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", nullable = false)
-    private String nome;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "cpf", unique = true, nullable = false)
     private String cpf;
@@ -57,12 +57,12 @@ public class Professor {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name= name;
     }
 
     public String getCpf() {
@@ -101,7 +101,7 @@ public class Professor {
     public String toString() {
         return "Professor{" +
                 "id=" + id +
-                ", name='" + nome+ '\'' +
+                ", name='" + name+ '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", departmentId=" + departmentId +
                 ", department=" + department +
