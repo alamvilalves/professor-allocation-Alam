@@ -48,7 +48,7 @@ public class ProfessorRepositoryTest {
 	@Test
 	public void findByNomeContaningIgnoreCase() {
 		//Act
-		List<Professor> professors = professorRepository.findByNomeContainingIgnoreCase("Rafael");
+		List<Professor> professors = professorRepository.findByNameContainingIgnoreCase("Rafael");
 		
 		//Print
 		//for (Professor professor : professors)
@@ -74,7 +74,7 @@ public class ProfessorRepositoryTest {
 		//Arrange
 		Professor professor = new Professor();
 		professor.setId(null);
-		professor.setNome("Patricia Mergulhão");
+		professor.setName("Patricia Mergulhão");
 		professor.setCpf("08565655699");
 		professor.setDepartmentId(1L);
 		
@@ -90,7 +90,7 @@ public class ProfessorRepositoryTest {
 		//Arrange
 		Professor professor = new Professor();
 		professor.setId(7L);
-		professor.setNome("Patricia Merg");
+		professor.setName("Patricia Merg");
 		professor.setCpf("11122233344");
 		professor.setDepartmentId(1L);
 		

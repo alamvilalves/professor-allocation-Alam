@@ -67,7 +67,7 @@ public class ProfessorServiceTest {
         // Arrange
         Professor professor = new Professor();
         professor.setId(null);
-        professor.setNome("Professor 1");
+        professor.setName("Professor 1");
         professor.setCpf("111.111.111-11");
         professor.setDepartmentId(1L);
 
@@ -83,7 +83,7 @@ public class ProfessorServiceTest {
         // Arrange
         Professor professor = new Professor();
         professor.setId(1L);
-        professor.setNome("Professor 2");
+        professor.setName("Professor 2");
         professor.setCpf("222.222.222-22");
         professor.setDepartmentId(1L);
 
